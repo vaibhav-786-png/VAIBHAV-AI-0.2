@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VAIBHAV X MODZ - WINGO Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login, .predictor {
+      background: #1e1e2f;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      width: 90%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00e6e6;
+    }
+    input[type="password"], button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input[type="password"] {
+      background: #333;
+      color: #fff;
+    }
+    button {
+      background: #00e6e6;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .hidden { display: none; }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .result p {
+      margin: 8px 0;
+      font-size: 20px;
+    }
+    .label {
+      color: #aaa;
+    }
+    .refresh-time {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login" id="loginPage">
+    <h2>VAIBHAV X MODZ</h2>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="predictor hidden" id="predictorPage">
+    <h2>WINGO 1 Minute Predictor</h2>
+    <div class="result" id="predictionResult">
+      <p><span class="label">Prediction:</span> <strong id="bigSmall"></strong></p>
+      <p><span class="label">Number:</span> <strong id="mainNumber"></strong></p>
+      <p><span class="label">Opposite:</span> <strong id="oppositeNumber"></strong></p>
+    </div>
+    <div class="refresh-time" id="refreshTime">MOD OWNER :- @YOUKNOW_PBKS</div>
+  </div>
+
+  <script>
+    const correctPassword = "VAIBHAV@010"; // Change your password here
+
+    function login() {
+      const pass = document.getElementById("password").value;
+      if (pass === correctPassword) {
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("predictorPage").classList.remove("hidden");
+        generatePrediction();
+        setInterval(generatePrediction, 60000); // every 60 seconds
+      } else {
+        alert("Wrong password!");
+      }
+    }
+
+    function generatePrediction() {
+      const number = Math.floor(Math.random() * 10); // 0-9
+      const isBig = number >= 5;
+      const opposite = 9 - number;
+
+      document.getElementById("bigSmall").innerText = isBig ? "BIG" : "SMALL";
+      document.getElementById("mainNumber").innerText = number;
+      document.getElementById("oppositeNumber").innerText = opposite;
+    }
+  </script>
+</body>
+</html>
